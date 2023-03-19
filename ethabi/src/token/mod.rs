@@ -12,12 +12,12 @@ mod lenient;
 mod strict;
 mod token;
 
+pub use self::{lenient::LenientTokenizer, strict::StrictTokenizer, token::Token};
+use crate::alloc::string::String;
+use crate::{Error, ParamType};
 use core::cmp::Ordering::{Equal, Less};
 use sp_std::vec;
-pub use self::{lenient::LenientTokenizer, strict::StrictTokenizer, token::Token};
-use crate::{Error, ParamType};
 use sp_std::vec::Vec;
-use sp_std::alloc::string::String;
 
 /// This trait should be used to parse string values as tokens.
 pub trait Tokenizer {

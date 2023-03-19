@@ -6,6 +6,7 @@
 // option. This file may not be copied, modified, or distributed
 // except according to those terms.
 
+use crate::alloc::string::String;
 use crate::{
 	errors::Error,
 	token::{StrictTokenizer, Tokenizer},
@@ -13,7 +14,6 @@ use crate::{
 };
 use anyhow::anyhow;
 use sp_std::vec::Vec;
-use sp_std::alloc::string::String;
 
 /// Tries to parse string as a token. Does not require string to clearly represent the value.
 pub struct LenientTokenizer;

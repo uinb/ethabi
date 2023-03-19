@@ -8,14 +8,14 @@
 
 //! Tuple param type.
 
+use crate::alloc::string::String;
 use crate::ParamType;
+use core::fmt;
 use serde::{
 	de::{Error, MapAccess, Visitor},
 	Deserialize, Deserializer,
 };
-use core::fmt;
 use sp_std::vec::Vec;
-use sp_std::alloc::string::String;
 
 /// Tuple params specification
 #[derive(Debug, Clone, PartialEq)]
