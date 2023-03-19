@@ -9,13 +9,14 @@
 use crate::{errors::Error, token::Tokenizer};
 use sp_std::vec::Vec;
 use sp_std::alloc::string::String;
+use alloc::borrow::ToOwned;
 /// Tries to parse string as a token. Require string to clearly represent the value.
 pub struct StrictTokenizer;
 
 
 impl Tokenizer for StrictTokenizer {
 	fn tokenize_address(value: &str) -> Result<[u8; 20], Error> {
-		let hex: Vec<u8> = hex::decode(value)?;
+		let hex: Vec<u8> = hex::decode(value).map_err(|e| Error::Hex(e))?;
 		match hex.len() == 20 {
 			false => Err(Error::InvalidData),
 			true => {
@@ -39,11 +40,11 @@ impl Tokenizer for StrictTokenizer {
 	}
 
 	fn tokenize_bytes(value: &str) -> Result<Vec<u8>, Error> {
-		hex::decode(value).map_err(Into::into)
+		hex::decode(value).map_err(|e|Error::Hex(e))
 	}
 
 	fn tokenize_fixed_bytes(value: &str, len: usize) -> Result<Vec<u8>, Error> {
-		let hex: Vec<u8> = hex::decode(value)?;
+		let hex: Vec<u8> = hex::decode(value).map_err(|e| Error::Hex(e))?;
 		match hex.len() == len {
 			true => Ok(hex),
 			false => Err(Error::InvalidData),
@@ -51,7 +52,7 @@ impl Tokenizer for StrictTokenizer {
 	}
 
 	fn tokenize_uint(value: &str) -> Result<[u8; 32], Error> {
-		let hex: Vec<u8> = hex::decode(value)?;
+		let hex: Vec<u8> = hex::decode(value).map_err(|e|Error::Hex(e))?;
 		match hex.len() == 32 {
 			true => {
 				let mut uint = [0u8; 32];

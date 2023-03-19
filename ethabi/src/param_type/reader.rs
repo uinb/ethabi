@@ -7,10 +7,11 @@
 // except according to those terms.
 
 use crate::{Error, ParamType};
-use sp_std::boxed::Box;
-use sp_std::vec::Vec;
-use sp_std::vec;
+use alloc::borrow::ToOwned;
 use alloc::string::String;
+use sp_std::boxed::Box;
+use sp_std::vec;
+use sp_std::vec::Vec;
 /// Used to convert param type represented as a string to rust structure.
 pub struct Reader;
 
@@ -120,7 +121,7 @@ impl Reader {
 					return Ok(ParamType::Array(Box::new(subtype)));
 				} else {
 					// it's a fixed array.
-					let len = usize::from_str_radix(&num, 10)?;
+					let len = usize::from_str_radix(&num, 10).map_err(|e| Error::ParseInt(e))?;
 					let subtype = Reader::read(&name[..count - num.len() - 2])?;
 					return Ok(ParamType::FixedArray(Box::new(subtype), len));
 				}
@@ -137,15 +138,15 @@ impl Reader {
 			"tuple" => ParamType::Tuple(vec![]),
 			"uint" => ParamType::Uint(256),
 			s if s.starts_with("int") => {
-				let len = usize::from_str_radix(&s[3..], 10)?;
+				let len = usize::from_str_radix(&s[3..], 10).map_err(|e| Error::ParseInt(e))?;
 				ParamType::Int(len)
 			}
 			s if s.starts_with("uint") => {
-				let len = usize::from_str_radix(&s[4..], 10)?;
+				let len = usize::from_str_radix(&s[4..], 10).map_err(|e| Error::ParseInt(e))?;
 				ParamType::Uint(len)
 			}
 			s if s.starts_with("bytes") => {
-				let len = usize::from_str_radix(&s[5..], 10)?;
+				let len = usize::from_str_radix(&s[5..], 10).map_err(|e| Error::ParseInt(e))?;
 				ParamType::FixedBytes(len)
 			}
 			_ => {

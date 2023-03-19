@@ -13,14 +13,15 @@ description = "Easy to use conversion of ethereum contract calls to bytecode."
 edition = "2021"
 
 [dependencies]
-anyhow = "1"
-hex = "0.4"
-serde = { version = "1.0", default-features = false }
+anyhow = {version = "1", default-features = false}
+hex = { version = "0.4", default-features =false, features = ["alloc"] }
+serde = { version = "1.0", default-features = false, features = ["derive"] }
 serde_json = { version = "1", default-features = false, features = ["alloc"]}
 sha3 = { version = "0.9", default-features = false }
 ethereum-types = "0.10.0"
 thiserror = "1"
 uint = "0.9.0"
+hashbrown = "0.13"
 sp-std = { default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.30"  }
 #sp-core = { default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.30"  }
 #sp-io = { default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.30"  }

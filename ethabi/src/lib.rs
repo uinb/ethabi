@@ -36,7 +36,6 @@ mod tests;
 
 pub use crate::{
 	constructor::Constructor,
-	contract::{Contract, Events, Functions},
 	decoder::decode,
 	encoder::encode,
 	errors::{Error, Result},

@@ -6,9 +6,9 @@
 // option. This file may not be copied, modified, or distributed
 // except according to those terms.
 
-use anyhow::anyhow;
-use core::{num, string};
 use alloc::string::String;
+use anyhow::anyhow;
+use core::num;
 
 /// Ethabi result type
 pub type Result<T> = core::result::Result<T, Error>;
@@ -35,10 +35,10 @@ pub enum Error {
 impl From<uint::FromDecStrErr> for Error {
 	fn from(err: uint::FromDecStrErr) -> Self {
 		use uint::FromDecStrErr::*;
-		match err {
+		let e = match err {
 			InvalidCharacter => anyhow!("Uint parse error: InvalidCharacter"),
 			InvalidLength => anyhow!("Uint parse error: InvalidLength"),
-		}
-		.into()
+		};
+		Error::Other(e)
 	}
 }

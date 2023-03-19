@@ -8,9 +8,9 @@
 
 //! ABI decoder.
 
-use sp_std::alloc;
 use crate::{util::slice_data, Error, ParamType, Token, Word};
 use alloc::string::String;
+use sp_std::alloc;
 use sp_std::vec::Vec;
 
 struct DecodeResult {
@@ -146,7 +146,10 @@ fn decode_param(param: &ParamType, slices: &[Word], offset: usize) -> Result<Dec
 
 			let taken = take_bytes(slices, len_offset + 1, len)?;
 
-			let result = DecodeResult { token: Token::String(String::from_utf8(taken.bytes)?), new_offset: offset + 1 };
+			let result = DecodeResult {
+				token: Token::String(String::from_utf8(taken.bytes).map_err(|e| Error::Utf8(e))?),
+				new_offset: offset + 1,
+			};
 			Ok(result)
 		}
 		ParamType::Array(ref t) => {
