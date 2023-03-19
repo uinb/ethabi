@@ -16,6 +16,8 @@ use std::{
 	fmt, io,
 	iter::Flatten,
 };
+use sp_std::vec::Vec;
+use alloc::string::String;
 
 /// API building calls to contracts ABI.
 #[derive(Clone, Debug, PartialEq)]
@@ -44,7 +46,7 @@ struct ContractVisitor;
 impl<'a> Visitor<'a> for ContractVisitor {
 	type Value = Contract;
 
-	fn expecting(&self, formatter: &mut fmt::Formatter) -> fmt::Result {
+	fn expecting(&self, formatter: &mut  core::fmt::Formatter) -> core::fmt::Result {
 		formatter.write_str("valid abi spec file")
 	}
 
@@ -77,10 +79,6 @@ impl<'a> Visitor<'a> for ContractVisitor {
 }
 
 impl Contract {
-	/// Loads contract from json.
-	pub fn load<T: io::Read>(reader: T) -> errors::Result<Self> {
-		serde_json::from_reader(reader).map_err(From::from)
-	}
 
 	/// Creates constructor call builder.
 	pub fn constructor(&self) -> Option<&Constructor> {

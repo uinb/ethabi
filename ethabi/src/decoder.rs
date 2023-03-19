@@ -8,7 +8,10 @@
 
 //! ABI decoder.
 
+use sp_std::alloc;
 use crate::{util::slice_data, Error, ParamType, Token, Word};
+use alloc::string::String;
+use sp_std::vec::Vec;
 
 struct DecodeResult {
 	token: Token,

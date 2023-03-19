@@ -9,7 +9,10 @@
 use crate::{Hash, Token};
 use serde::{Serialize, Serializer};
 use serde_json::Value;
-use std::ops;
+use core::ops;
+use sp_std::vec::Vec;
+use sp_std::vec;
+use alloc::format;
 
 /// Raw topic filter.
 #[derive(Debug, PartialEq, Default)]

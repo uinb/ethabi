@@ -12,6 +12,8 @@ use crate::{
 	Uint,
 };
 use anyhow::anyhow;
+use sp_std::vec::Vec;
+use sp_std::alloc::string::String;
 
 /// Tries to parse string as a token. Does not require string to clearly represent the value.
 pub struct LenientTokenizer;

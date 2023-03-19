@@ -8,10 +8,12 @@
 
 //! Contract function call builder.
 
-use std::string::ToString;
-
+use alloc::string::ToString;
 use crate::{decode, encode, signature::short_signature, Bytes, Error, Param, ParamType, Result, Token};
 use serde::Deserialize;
+use sp_std::vec::Vec;
+use alloc::string::String;
+use alloc::format;
 
 /// Contract function specification.
 #[derive(Debug, Clone, PartialEq, Deserialize)]

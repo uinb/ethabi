@@ -7,36 +7,29 @@
 // except according to those terms.
 
 use anyhow::anyhow;
-use std::{num, string};
-use thiserror::Error;
+use core::{num, string};
+use alloc::string::String;
 
 /// Ethabi result type
-pub type Result<T> = std::result::Result<T, Error>;
+pub type Result<T> = core::result::Result<T, Error>;
 
 /// Ethabi errors
-#[derive(Debug, Error)]
+#[derive(Debug)]
 pub enum Error {
 	/// Invalid entity such as a bad function name.
-	#[error("Invalid name: {0}")]
 	InvalidName(String),
 	/// Invalid data.
-	#[error("Invalid data")]
 	InvalidData,
 	/// Serialization error.
-	#[error("Serialization error: {0}")]
-	SerdeJson(#[from] serde_json::Error),
+	SerdeJson(serde_json::Error),
 	/// Integer parsing error.
-	#[error("Integer parsing error: {0}")]
-	ParseInt(#[from] num::ParseIntError),
+	ParseInt(num::ParseIntError),
 	/// UTF-8 parsing error.
-	#[error("UTF-8 parsing error: {0}")]
-	Utf8(#[from] string::FromUtf8Error),
+	Utf8(alloc::string::FromUtf8Error),
 	/// Hex string parsing error.
-	#[error("Hex parsing error: {0}")]
-	Hex(#[from] hex::FromHexError),
+	Hex(hex::FromHexError),
 	/// Other errors.
-	#[error("{0}")]
-	Other(#[from] anyhow::Error),
+	Other(anyhow::Error),
 }
 
 impl From<uint::FromDecStrErr> for Error {

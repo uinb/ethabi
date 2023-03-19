@@ -7,9 +7,11 @@
 // except according to those terms.
 
 //! Ethereum ABI encoding decoding library.
-
+#![cfg_attr(not(feature = "std"), no_std)]
 #![allow(clippy::module_inception)]
 #![warn(missing_docs)]
+
+extern crate alloc;
 
 mod constructor;
 mod contract;
@@ -28,7 +30,7 @@ mod signature;
 pub mod token;
 mod tuple_param;
 mod util;
-
+use sp_std::vec::Vec;
 #[cfg(test)]
 mod tests;
 

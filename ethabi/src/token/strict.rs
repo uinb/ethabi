@@ -7,9 +7,11 @@
 // except according to those terms.
 
 use crate::{errors::Error, token::Tokenizer};
-
+use sp_std::vec::Vec;
+use sp_std::alloc::string::String;
 /// Tries to parse string as a token. Require string to clearly represent the value.
 pub struct StrictTokenizer;
+
 
 impl Tokenizer for StrictTokenizer {
 	fn tokenize_address(value: &str) -> Result<[u8; 20], Error> {

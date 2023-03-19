@@ -9,7 +9,7 @@
 //! Utils used by different modules.
 
 use crate::{Error, Word};
-
+use sp_std::vec::Vec;
 /// Converts a vector of bytes with len equal n * 32, to a vector of slices.
 pub fn slice_data(data: &[u8]) -> Result<Vec<Word>, Error> {
 	if data.len() % 32 != 0 {

@@ -9,7 +9,9 @@
 //! Function and event param types.
 
 use super::Writer;
-use std::fmt;
+use core::fmt;
+use sp_std::vec::Vec;
+use alloc::boxed::Box;
 
 /// Function and event param types.
 #[derive(Debug, Clone, PartialEq)]

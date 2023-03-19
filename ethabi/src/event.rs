@@ -11,6 +11,9 @@
 use serde::Deserialize;
 use sha3::{Digest, Keccak256};
 use std::collections::HashMap;
+use sp_std::vec::Vec;
+use alloc::string::String;
+
 
 use crate::{
 	decode, encode, signature::long_signature, Error, EventParam, Hash, Log, LogParam, ParamType, RawLog,

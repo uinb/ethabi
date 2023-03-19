@@ -13,7 +13,10 @@ use serde::{
 	de::{Error, MapAccess, Visitor},
 	Deserialize, Deserializer,
 };
-use std::fmt;
+use core::fmt;
+use sp_std::vec::Vec;
+use alloc::string::String;
+
 
 /// Event param specification.
 #[derive(Debug, Clone, PartialEq)]

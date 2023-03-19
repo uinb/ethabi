@@ -11,7 +11,7 @@
 use crate::{Constructor, Event, Function};
 use serde::{de::Error as SerdeError, Deserialize, Deserializer};
 use serde_json::{value::from_value, Value};
-
+use alloc::string::String;
 /// Operation type.
 #[derive(Clone, Debug, PartialEq)]
 pub enum Operation {

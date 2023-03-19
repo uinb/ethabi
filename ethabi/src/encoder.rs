@@ -9,6 +9,8 @@
 //! ABI encoder.
 
 use crate::{util::pad_u32, Bytes, Token, Word};
+use sp_std::vec::Vec;
+use sp_std::vec;
 
 fn pad_bytes(bytes: &[u8]) -> Vec<Word> {
 	let mut result = vec![pad_u32(bytes.len() as u32)];

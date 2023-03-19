@@ -7,6 +7,8 @@
 // except according to those terms.
 
 use crate::{Bytes, Hash, Result, Token, TopicFilter};
+use sp_std::vec::Vec;
+use alloc::string::String;
 
 /// Common filtering functions that are available for any event.
 pub trait LogFilter {

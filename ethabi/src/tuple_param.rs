@@ -13,7 +13,9 @@ use serde::{
 	de::{Error, MapAccess, Visitor},
 	Deserialize, Deserializer,
 };
-use std::fmt;
+use core::fmt;
+use sp_std::vec::Vec;
+use sp_std::alloc::string::String;
 
 /// Tuple params specification
 #[derive(Debug, Clone, PartialEq)]
