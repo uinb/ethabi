@@ -8,8 +8,8 @@
 
 //! ABI decoder.
 
+use crate::alloc::string::String;
 use crate::{util::slice_data, Error, ParamType, Token, Word};
-use alloc::string::String;
 use sp_std::alloc;
 use sp_std::vec::Vec;
 
