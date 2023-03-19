@@ -6,12 +6,12 @@
 // option. This file may not be copied, modified, or distributed
 // except according to those terms.
 
+use crate::alloc::format;
 use crate::alloc::string::String;
 use crate::ParamType;
-use alloc::format;
 use sp_std::vec::Vec;
 
-use sp_std::alloc::borrow::ToOwned;
+use crate::alloc::borrow::ToOwned;
 /// Output formatter for param type.
 pub struct Writer;
 

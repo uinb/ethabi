@@ -7,12 +7,11 @@
 // except according to those terms.
 
 //! Ethereum ABI params.
+use crate::alloc::format;
+use crate::alloc::string::String;
 use crate::{Address, Bytes, FixedBytes, ParamType, Uint};
 use core::fmt;
-use sp_std::alloc;
 use sp_std::vec::Vec;
-use alloc::string::String;
-use alloc::format;
 /// Ethereum ABI params.
 #[derive(Debug, PartialEq, Clone)]
 pub enum Token {
